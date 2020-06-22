@@ -1,0 +1,59 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: openebs
+  namespace: openebs
+  annotations:
+    fluxcd.io/automated: "false"
+    #fluxcd.io/tag.chart-image:
+spec:
+  releaseName: openebs
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com
+    name: openebs
+    version: 1.11.0
+  values:
+    apiserver:
+      image: openebs/m-apiserver-arm64
+    provisioner:
+      image: openebs/openebs-k8s-provisioner-arm64
+    localprovisioner:
+      image: openebs/provisioner-localpv-arm64
+    snapshotOperator:
+      controller:
+        image: openebs/snapshot-controller-arm64
+      provisioner:
+        image: openebs/snapshot-provisioner-arm64
+    ndm:
+      image: openebs/node-disk-manager-arm64
+#      filters:
+#        enableOsDiskExcludeFilter: false
+#        enableVendorFilter: false
+#        enablePathFilter: true
+#        includePaths: /dev/mmcblk0p3
+#        excludePaths: ""
+    ndmOperator:
+      image: openebs/node-disk-operator-arm64
+    webhook:
+      image: openebs/admission-server-arm64
+    jiva:
+      image: openebs/jiva-arm64
+    cstor:
+      pool:
+        image: openebs/cstor-pool-arm64
+      poolMgmt:
+        image: openebs/cstor-pool-mgmt-arm64
+      target:
+        image: openebs/cstor-istgt-arm64
+      volumeMgmt:
+        image: openebs/cstor-volume-mgmt-arm64
+    helper:
+      image: openebs/linux-utils-arm64
+    policies:
+      monitoring:
+        image: openebs/m-exporter-arm64
+    featureGates:
+      enabled: true
+      GPTBasedUUID:
+        enabled: true
