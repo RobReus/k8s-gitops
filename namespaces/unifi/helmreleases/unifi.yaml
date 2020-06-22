@@ -9,7 +9,7 @@ metadata:
 spec:
   releaseName: unifi
   chart:
-    git: https://github.com/RobReus/k8s-gitops
+    git: git@github.com:RobReus/k8s-gitops
     name: charts/unifi
     ref: master
   values:
