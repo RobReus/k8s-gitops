@@ -1,0 +1,40 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: unifi
+  namespace: unifi
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  releaseName: unifi
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com
+    name: unifi
+    version: 0.10.0
+  values:
+    image:
+      repository: linuxserver/unifi-controller
+      tag: 5.13.29-ls63
+    guiService:
+      type: LoadBalancer
+      annotations:
+        metallb.universe.tf/address-pool: default
+        metallb.universe.tf/allow-shared-ip: unifi
+    controllerService:
+      type: LoadBalancer
+      annotations:
+        metallb.universe.tf/address-pool: default
+        metallb.universe.tf/allow-shared-ip: unifi
+    stunService:
+      type: LoadBalancer
+      annotations:
+        metallb.universe.tf/address-pool: default
+        metallb.universe.tf/allow-shared-ip: unifi
+    discoveryService:
+      type: LoadBalancer
+      annotations:
+        metallb.universe.tf/address-pool: default
+        metallb.universe.tf/allow-shared-ip: unifi
+    persistence:
+      storageClass: openebs-sc-statefulset
