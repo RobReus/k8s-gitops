@@ -9,9 +9,9 @@ metadata:
 spec:
   releaseName: unifi
   chart:
-    repository: https://kubernetes-charts.storage.googleapis.com
-    name: unifi
-    version: 0.10.0
+    git: https://github.com/RobReus/k8s-gitops
+    name: charts/unifi
+    ref: master
   values:
     image:
       repository: linuxserver/unifi-controller
