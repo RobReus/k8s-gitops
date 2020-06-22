@@ -10,7 +10,7 @@ spec:
   releaseName: unifi
   chart:
     git: git@github.com:RobReus/k8s-gitops
-    name: charts/unifi
+    path: charts/unifi
     ref: master
   values:
     image:
