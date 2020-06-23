@@ -2,12 +2,12 @@
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
-  name: flux
-  namespace: flux
+  name: home-assistant
+  namespace: home-assistant
   annotations:
     fluxcd.io/automated: false
 spec:
-  releaseName: flux
+  releaseName: home-assistant
   chart:
     repository: https://billimek.com/billimek-charts/
     name: home-assistant
