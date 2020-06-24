@@ -5,7 +5,7 @@ metadata:
   name: home-assistant
   namespace: home-assistant
   annotations:
-    fluxcd.io/automated: false
+    fluxcd.io/automated: 'false'
 spec:
   releaseName: home-assistant
   chart:
@@ -15,6 +15,7 @@ spec:
   values:
     image:
       tag: 0.111.4
+    hostNetwork: 'true'
     service:
       type: LoadBalancer
       annotations:
