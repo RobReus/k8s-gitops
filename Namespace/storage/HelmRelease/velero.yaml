@@ -1,0 +1,55 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: velero
+  namespace: storage
+  annotations:
+    fluxcd.io/ignore: 'false'
+    fluxcd.io/automated: 'false'
+spec:
+  releaseName: velero
+  helmVersion: v3
+  chart:
+    repository: https://vmware-tanzu.github.io/helm-charts
+    name: velero
+    version: 2.12.0
+  values:
+    image:
+      repository: robreus/velero
+      tag: v1.4.1
+    initContainers:
+      - name: velero-plugin-for-aws
+        image: robreus/velero-aws-plugin:v1.1.0
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - mountPath: /target
+            name: plugins
+      - name: velero-plugin-for-openebs
+        image: openebs/velero-plugin-arm64:1.11.0
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - mountPath: /target
+            name: plugins
+    credentials:
+      useSecret: true
+      existingSecret: velero-aws-credentials
+    configuration:
+      provider: openebs.io/cstor-blockstore
+      backupStorageLocation:
+        name: default
+        provider: aws
+        bucket: devrobs-k8s-velero
+        config:
+          region: eu-west-1
+      volumeSnapshotLocation:
+        name: s3
+        provider: openebs.io/cstor-blockstore
+        bucket: devrobs-k8s-velero
+        config:
+          provider: aws
+          bucket: devrobs-k8s-velero
+          region: eu-west-1
+          multiPartChunkSize: 64Mi
+      extraEnvVars:
+        AWS_SHARED_CREDENTIALS_FILE: /credentials/cloud

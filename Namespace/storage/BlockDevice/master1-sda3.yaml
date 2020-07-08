@@ -1,0 +1,33 @@
+---
+apiVersion: openebs.io/v1alpha1
+kind: BlockDevice
+metadata:
+  namespace: storage
+  name: master1-sda3
+  labels:
+    kubernetes.io/hostname: master1.kubernetes.lan
+    ndm.io/managed: "false"
+    ndm.io/blockdevice-type: blockdevice
+status:
+  claimState: Unclaimed
+  state: Active
+spec:
+  capacity:
+    logicalSectorSize: 512
+    storage: 446314864640
+  details:
+    firmwareRevision:
+    model: MX500
+    serial: 2008E28CCF74
+    compliance:
+    vendor: Crucial
+  devlinks:
+  - kind: by-id
+    links:
+    - /dev/disk/by-id/ata-CT500MX500SSD1_2008E28CCF74-part3
+  - kind: by-path
+    links:
+    - /dev/disk/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:2:1.0-scsi-0:0:0:0-part3
+  nodeAttributes:
+    nodeName: master1.kubernetes.lan
+  path: /dev/sda3

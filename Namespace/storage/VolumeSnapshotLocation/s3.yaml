@@ -1,0 +1,14 @@
+---
+apiVersion: velero.io/v1
+kind: VolumeSnapshotLocation
+metadata:
+  name: s3
+  namespace: openebs
+spec:
+  provider: openebs.io/cstor-blockstore
+  config:
+    bucket: devrobs-k8s-velero
+    prefix: cstor
+    provider: aws
+    region: eu-west-1
+    multiPartChunkSize: 64Mi

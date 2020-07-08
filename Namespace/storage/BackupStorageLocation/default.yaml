@@ -1,0 +1,12 @@
+---
+apiVersion: velero.io/v1
+kind: BackupStorageLocation
+metadata:
+  name: default
+  namespace: storage
+spec:
+  config:
+    region: eu-west-1
+  objectStorage:
+    bucket: devrobs-k8s-velero
+  provider: aws
