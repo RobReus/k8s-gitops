@@ -19,6 +19,6 @@ spec:
     image:
       repository: k8s.gcr.io/metrics-server-arm64
       tag: v0.3.6
-#    args:
-#      - --kubelet-insecure-tls=true
+    args:
+      - --kubelet-insecure-tls=true
 #      - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
