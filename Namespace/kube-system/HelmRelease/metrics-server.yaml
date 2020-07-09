@@ -21,4 +21,3 @@ spec:
       tag: v0.3.6
     args:
       - --kubelet-insecure-tls=true
-#      - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
