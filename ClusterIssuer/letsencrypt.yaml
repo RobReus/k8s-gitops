@@ -1,0 +1,23 @@
+---
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt
+spec:
+  acme:
+    email: rob+letsencrypt@devrobs.nl
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt
+    solvers:
+      - selector:
+          dnsZones:
+            - "rreus.nl"
+            - "devrobs.nl"
+        dns01:
+          route53:
+            region: eu-west-1
+            accessKeyID: AKIARDJP255I3NHXDFLL
+            secretAccessKeySecretRef:
+              name: route53-iam-key
+              key: secret-access-key
