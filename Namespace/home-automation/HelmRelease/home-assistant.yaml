@@ -28,6 +28,10 @@ spec:
         kubernetes.io/tls-acme: "true"
       hosts:
         - hass.k8s.devrobs.nl
+      tls:
+        - secretName: home-assistant-tls
+          hosts:
+            - hass.k8s.devrobs.nl
     persistence:
       storageClass: openebs-sc-statefulset
     vscode:
