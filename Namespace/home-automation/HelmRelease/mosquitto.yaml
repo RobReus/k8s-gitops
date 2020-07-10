@@ -1,0 +1,19 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: mosquitto
+  namespace: home-assistant
+  annotations:
+    fluxcd.io/automated: 'false'
+spec:
+  releaseName: mosquitto
+  chart:
+    repository: https://halkeye.github.io/helm-charts/
+    name: mosquitto
+    version: 0.2.0
+  values:
+    service:
+      annotations:
+        metallb.universe.tf/address-pool: default
+      type: LoadBalancer

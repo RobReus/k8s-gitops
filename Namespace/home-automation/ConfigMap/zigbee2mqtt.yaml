@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: zigbee2mqtt
+  namespace: home-assistant
+data:
+  configuration.yaml: |
+    homeassistant: true
+    permit_join: false
+    mqtt:
+      base_topic: zigbee2mqtt
+      server: 'mqtt://mosquitto'
+
+    # Serial settings
+    serial:
+      # Location of CC2531 USB sniffer
+      port: /dev/ttyACM0
+
+    devices: devices.yaml
+    groups: groups.yaml

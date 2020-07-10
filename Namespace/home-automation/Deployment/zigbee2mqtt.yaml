@@ -1,0 +1,48 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zigbee2mqtt
+  namespace: home-assistant
+spec:
+  selector:
+    matchLabels:
+      app: zigbee2mqtt
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: zigbee2mqtt
+    spec:
+      containers:
+      - name: zigbee2mqtt
+        image: koenkk/zigbee2mqtt:1.14.0
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - mountPath: /dev/ttyACM0
+            name: cc2531
+          - mountPath: /app/data
+            name: data
+          - mountPath: /app/config/
+            name: config
+        env:
+          - name: TZ
+            value: Europe/Amsterdam
+          - name: ZIGBEE2MQTT_CONFIG
+            value: /app/config/configuration.yaml
+        securityContext:
+          privileged: true
+      nodeSelector:
+        cc2531: "true"
+      volumes:
+        - name: cc2531
+          hostPath:
+            path: /dev/ttyACM0
+        - name: data
+          persistentVolumeClaim:
+            claimName: zigbee2mqtt
+        - name: config
+          configMap:
+            name: zigbee2mqtt

@@ -1,0 +1,32 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: home-assistant
+  namespace: home-assistant
+  annotations:
+    fluxcd.io/automated: 'false'
+spec:
+  releaseName: home-assistant
+  chart:
+    repository: https://billimek.com/billimek-charts/
+    name: home-assistant
+    version: 1.0.0
+  values:
+    image:
+      tag: 0.111.4
+    hostNetwork: 'true'
+    service:
+      type: LoadBalancer
+      annotations:
+        metallb.universe.tf/address-pool: default
+    persistence:
+      storageClass: openebs-sc-statefulset
+    vscode:
+      enabled: true
+      image:
+        tag: 3.4.1
+      service:
+        type: LoadBalancer
+        annotations:
+          metallb.universe.tf/address-pool: default
