@@ -43,5 +43,7 @@ spec:
         annotations:
           metallb.universe.tf/address-pool: default
     probes:
-      readiness:
-        initialDelaySeconds: 120
+      startup:
+        enabled: true
+        failureThreshold: 90
+        periodSeconds: 10
