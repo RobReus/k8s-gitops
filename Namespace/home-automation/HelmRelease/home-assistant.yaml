@@ -42,3 +42,5 @@ spec:
         type: LoadBalancer
         annotations:
           metallb.universe.tf/address-pool: default
+    probes:
+        initialDelaySeconds: 120
