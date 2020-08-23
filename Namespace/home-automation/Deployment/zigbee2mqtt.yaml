@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: zigbee2mqtt
-        image: koenkk/zigbee2mqtt:1.14.0
+        image: koenkk/zigbee2mqtt:1.14.3
         imagePullPolicy: IfNotPresent
         volumeMounts:
           - mountPath: /dev/ttyACM0
