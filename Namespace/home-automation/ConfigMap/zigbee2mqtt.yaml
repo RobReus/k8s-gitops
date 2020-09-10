@@ -19,3 +19,6 @@ data:
 
     devices: devices.yaml
     groups: groups.yaml
+
+    advanced:
+      availability_timeout: 60
