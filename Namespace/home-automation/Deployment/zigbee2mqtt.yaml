@@ -40,6 +40,7 @@ spec:
         - name: cc2531
           hostPath:
             path: /dev/ttyACM0
+            type: CharDevice
         - name: data
           persistentVolumeClaim:
             claimName: zigbee2mqtt
