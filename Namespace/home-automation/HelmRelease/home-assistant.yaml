@@ -14,7 +14,7 @@ spec:
     version: 1.0.0
   values:
     image:
-      tag: 0.114.2
+      tag: 2021.2.3
     hostNetwork: 'true'
     service:
       type: LoadBalancer
@@ -37,7 +37,7 @@ spec:
     vscode:
       enabled: true
       image:
-        tag: 3.4.1
+        tag: 3.9.0
       service:
         type: LoadBalancer
         annotations:
