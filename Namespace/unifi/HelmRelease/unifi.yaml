@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: linuxserver/unifi-controller
-      tag: 5.13.29-ls63
+      tag: 6.0.45-ls99
     guiService:
       type: LoadBalancer
       annotations:
